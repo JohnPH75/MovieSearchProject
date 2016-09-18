@@ -8,13 +8,20 @@
 
 import Foundation
 
-class Movie: NSObject {
+class Movie {
     
     var id: String!
     var title: String!
     var year: String!
-    
-    override init() {
+    var genre: String!
+    var director: String?
+    var plot: String?
+    var language: String?
+    var rated: String?
+    var country: String?
+    var runtime: String?
+    var poster: String?
+    init() {
         
     }
     
