@@ -2,10 +2,11 @@
 //  DetailViewController.swift
 //  MovieSearchProject
 //
-//  Created by John Hussain on 9/3/16.
+//  Created by John Hussain on 9/20/16.
 //  Copyright © 2016 John Hussain. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class DetailViewController: UITableViewController {
@@ -14,7 +15,6 @@ class DetailViewController: UITableViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var director: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
@@ -30,7 +30,7 @@ class DetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.tintColor = UIColor(red:0.839, green:0.109, blue:0, alpha:1)
+        //        self.navigationController!.navigationBar.tintColor = UIColor(red:0.839, green:0.109, blue:0, alpha:1)
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
@@ -45,6 +45,20 @@ class DetailViewController: UITableViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DetailViewController.loadData(_:)), name: "didUpdateMovie", object: nil)
         
+        let navBarColor = navigationController!.navigationBar
+        navBarColor.barTintColor = UIColor.yellowColor()
+        navBarColor.alpha = 1
+        navBarColor.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 20)!]
+        
+        let backButton = UIBarButtonItem(title: "Back To Search", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(movieSearchTapped))
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 15)!], forState: UIControlState.Normal)
+        backButton.tintColor = UIColor.redColor()
+        
+    }
+    func movieSearchTapped() {
+        
+        navigationController?.popToRootViewControllerAnimated(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,12 +74,12 @@ class DetailViewController: UITableViewController {
     func assignData() {
         self.title = movie!.title!
         self.titleLabel.text = self.movie!.title!
-        self.yearLabel.text = "(" + self.movie!.year! + ")"
+        //self.yearLabel.text = "(" + self.movie!.year! + ")"
         self.genreLabel.text = self.movie!.runtime! + " | " + self.movie!.genre!
         self.countryLabel.text = self.movie!.country!
         self.languageLabel.text = self.movie!.language!
-        self.directorLabel.text = self.movie!.director!
         self.ratedLabel.text = self.movie!.rated!
+        self.directorLabel.text = self.movie!.director!
         self.plotText.text = self.movie!.plot!
         if let url  = NSURL(string: self.movie!.poster!),
             data = NSData(contentsOfURL: url) {
@@ -80,7 +94,7 @@ class DetailViewController: UITableViewController {
     
     func hideLabels() {
         self.titleLabel.hidden = true
-        self.yearLabel.hidden = true
+        //self.yearLabel.hidden = true
         self.genreLabel.hidden = true
         self.director.hidden = true
         self.directorLabel.hidden = true
@@ -88,6 +102,7 @@ class DetailViewController: UITableViewController {
         self.countryLabel.hidden = true
         self.language.hidden = true
         self.languageLabel.hidden = true
+        self.rated.hidden = true
         self.ratedLabel.hidden = true
         self.plotText.hidden = true
         self.imageView.hidden = true
@@ -95,7 +110,7 @@ class DetailViewController: UITableViewController {
     
     func showLabels() {
         self.titleLabel.hidden = false
-        self.yearLabel.hidden = false
+        //self.yearLabel.hidden = false
         self.genreLabel.hidden = false
         self.director.hidden = false
         self.directorLabel.hidden = false
@@ -103,6 +118,7 @@ class DetailViewController: UITableViewController {
         self.countryLabel.hidden = false
         self.language.hidden = false
         self.languageLabel.hidden = false
+        self.rated.hidden = false
         self.ratedLabel.hidden = false
         self.plotText.hidden = false
         self.imageView.hidden = false
