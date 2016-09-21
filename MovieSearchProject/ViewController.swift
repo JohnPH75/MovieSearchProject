@@ -26,6 +26,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         collectionView.backgroundColor = UIColor.lightGrayColor()
         
+        searchBarUI()
         navBarUI()
     }
     
@@ -34,6 +35,50 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         searchBar.text = ""
         self.manager.movieList.removeAll()
         collectionView?.reloadData()
+        manager.pageNumber = 1
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchResult = searchBar.text
+        guard let unwrappedSearch = searchResult else {return}
+        
+        if unwrappedSearch == ""
+        {
+            self.manager.movieList.removeAll()
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                self.collectionView.reloadData()
+            })
+            manager.pageNumber = 1
+        }
+        else
+        {
+            self.manager.movieList.removeAll()
+            
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                self.manager.getMovies(unwrappedSearch)
+                self.collectionView.reloadData()
+            })
+            
+            
+            
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == manager.movieList.count - 1 {
+            if let searchText = searchBar.text
+            {
+                dispatch_async(dispatch_get_main_queue(),
+                               {
+                                self.manager.getNextPage(searchText)
+                                self.manager.getMovies(searchText)
+                                self.collectionView.reloadData()
+                })
+            }
+            
+        }
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -58,10 +103,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         let movie = self.manager.movieList[indexPath.row]
         
+        //        cell.labelCell.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        //        cell.labelCell.numberOfLines = 0
+        //        cell.labelCell.sizeToFit()
         cell.labelCell.text = movie.title
+        
         cell.labelDetailCell.text = movie.year
         
         let imageURL = movie.poster
+        
         if let image = imageURL
         {
             let url = NSURL(string: image)
@@ -74,7 +124,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     cell.imageCell.image = UIImage(data: unwrappedData)
                 }
             }
+            
         }
+        //let url: NSURL = NSURL(string: imageURL!)!
+        //let data:NSData = NSData(contentsOfURL: url)!
+        //cell.imageCell.image = UIImage(data: data)
+        
         return cell
     }
     
@@ -113,5 +168,40 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         backButton.tintColor = UIColor.redColor()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+            
+            let cell = sender as! UICollectionViewCell
+            let indexPath: NSIndexPath = self.collectionView.indexPathForCell(cell)!
+            
+            if manager.movieList[indexPath.row].director != nil {
+                let destView = segue.destinationViewController as! DetailViewController
+                destView.movie = manager.movieList[indexPath.row]
+            } else {
+                self.manager.getMovieInfo(manager.movieList[indexPath.row])
+            }
+        }
+    }
     
+    func searchBarUI() {
+        searchBar.barTintColor = UIColor.blackColor() //border
+        searchBar.bringSubviewToFront(view)
+        if let textFieldInsideSearchBar = self.searchBar.valueForKey("searchField") as? UITextField,
+            let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView {
+            //Magnifying glass
+            glassIconView.image = glassIconView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            glassIconView.tintColor = UIColor.yellowColor()
+            textFieldInsideSearchBar.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: 17)
+            textFieldInsideSearchBar.textColor = UIColor.yellowColor() //text being typed
+        }
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITextField.self]).textColor = UIColor.yellowColor()  //placeholder text
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview .isKindOfClass(UITextField) {
+                    let textField: UITextField = subview as! UITextField
+                    textField.backgroundColor = UIColor.blackColor()
+                }
+            }
+        }
+    }
 }

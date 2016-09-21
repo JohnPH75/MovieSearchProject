@@ -191,8 +191,8 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="FuE-t6-iTJ"/>
-                                                    <exclude reference="j7P-S4-3Qu"/>
                                                     <exclude reference="aNL-Lb-vhg"/>
+                                                    <exclude reference="j7P-S4-3Qu"/>
                                                     <exclude reference="koX-E8-nJg"/>
                                                 </mask>
                                             </variation>
@@ -367,6 +367,7 @@
                         <outlet property="rated" destination="3j1-tM-Hsd" id="y8c-sI-vaH"/>
                         <outlet property="ratedLabel" destination="6Ys-4U-eet" id="Q6i-S3-GYK"/>
                         <outlet property="titleLabel" destination="WeU-QW-SIu" id="Ox4-sT-nw1"/>
+                        <outlet property="yearLabel" destination="cpT-hj-FUt" id="3F0-lg-7DW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymv-jO-IPf" userLabel="First Responder" sceneMemberID="firstResponder"/>

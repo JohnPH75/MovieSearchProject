@@ -13,20 +13,25 @@ class OMDBAPIClient {
     static let sharedInstance = OMDBAPIClient()
     
     var movieList = [Movie]()
+    var pageNumber = 1
     
     private init() {}
     
     func getMovies(title: String) {
         
         // movies by title
-        let path = "https://www.omdbapi.com/?s=\(title)&r=json"
+        
+        let path = "https://www.omdbapi.com/?s=\(title)&r=json&page=\(pageNumber)"
+        
         let url = NSURL(string: path)
         
-        print(url)
+        if let unwrappedURL = url {
+            print(unwrappedURL)
+        }
         
         let jsonData = NSData(contentsOfURL: url!)
         
-        self.movieList.removeAll()
+        //self.movieList.removeAll() //makes page load automatically
         
         do {
             // JSON deserialization
@@ -40,10 +45,8 @@ class OMDBAPIClient {
                     movie.year = item["Year"] as? String
                     movie.id = item["imdbID"] as? String
                     movie.poster = item["Poster"] as? String
-                    
                     self.movieList.append(movie)
                 }
-                
             }
             // update interface
             NSNotificationCenter.defaultCenter().postNotificationName("didAddMovie", object: self)
@@ -98,5 +101,10 @@ class OMDBAPIClient {
             }
         }
         task.resume()
+    }
+    
+    func getNextPage(searchText: String){
+        
+        pageNumber += 1
     }
 }

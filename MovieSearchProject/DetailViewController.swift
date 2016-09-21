@@ -15,6 +15,7 @@ class DetailViewController: UITableViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var director: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
@@ -27,6 +28,7 @@ class DetailViewController: UITableViewController {
     @IBOutlet weak var plotText: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var fullPlotButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,7 +76,7 @@ class DetailViewController: UITableViewController {
     func assignData() {
         self.title = movie!.title!
         self.titleLabel.text = self.movie!.title!
-        //self.yearLabel.text = "(" + self.movie!.year! + ")"
+        self.yearLabel.text = "(" + self.movie!.year! + ")"
         self.genreLabel.text = self.movie!.runtime! + " | " + self.movie!.genre!
         self.countryLabel.text = self.movie!.country!
         self.languageLabel.text = self.movie!.language!
@@ -94,7 +96,7 @@ class DetailViewController: UITableViewController {
     
     func hideLabels() {
         self.titleLabel.hidden = true
-        //self.yearLabel.hidden = true
+        self.yearLabel.hidden = true
         self.genreLabel.hidden = true
         self.director.hidden = true
         self.directorLabel.hidden = true
@@ -110,7 +112,7 @@ class DetailViewController: UITableViewController {
     
     func showLabels() {
         self.titleLabel.hidden = false
-        //self.yearLabel.hidden = false
+        self.yearLabel.hidden = false
         self.genreLabel.hidden = false
         self.director.hidden = false
         self.directorLabel.hidden = false
