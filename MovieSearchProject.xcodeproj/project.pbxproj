@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B28A0CC1DA5CF9100DF486B /* PlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28A0CB1DA5CF9100DF486B /* PlotViewController.swift */; };
 		2B3EE4371D7D298700092A8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B3EE4351D7D298700092A8B /* Main.storyboard */; };
 		2B7F90A91D8F499C0027100B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F90A81D8F499C0027100B /* ViewController.swift */; };
 		2B7F90AB1D8F4A270027100B /* ViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7F90AA1D8F4A270027100B /* ViewControllerCell.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B28A0CB1DA5CF9100DF486B /* PlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotViewController.swift; sourceTree = "<group>"; };
 		2B3EE4361D7D298700092A8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2B7F90A81D8F499C0027100B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B7F90AA1D8F4A270027100B /* ViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCell.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				2B7F90A81D8F499C0027100B /* ViewController.swift */,
 				2B7F90AA1D8F4A270027100B /* ViewControllerCell.swift */,
 				2BB9F3DA1D91FF4F00AA6A77 /* DetailViewController.swift */,
+				2B28A0CB1DA5CF9100DF486B /* PlotViewController.swift */,
 				2BE4A4411D7A868E00D3407E /* Movie.swift */,
 				2BE4A4431D7A86C000D3407E /* OMDBAPIClient.swift */,
 				2B3EE4351D7D298700092A8B /* Main.storyboard */,
@@ -152,6 +155,7 @@
 				2B7F90A91D8F499C0027100B /* ViewController.swift in Sources */,
 				2BE4A4441D7A86C000D3407E /* OMDBAPIClient.swift in Sources */,
 				2BB9F3DB1D91FF4F00AA6A77 /* DetailViewController.swift in Sources */,
+				2B28A0CC1DA5CF9100DF486B /* PlotViewController.swift in Sources */,
 				2BE4A4421D7A868E00D3407E /* Movie.swift in Sources */,
 				2BE4A42B1D7A853B00D3407E /* AppDelegate.swift in Sources */,
 			);

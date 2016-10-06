@@ -312,6 +312,9 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="GXR-U2-90g" kind="show" identifier="nextView" id="DSu-ix-TqS"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -373,6 +376,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymv-jO-IPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2529" y="238"/>
+        </scene>
+        <!--Plot Info-->
+        <scene sceneID="BQn-R3-oJy">
+            <objects>
+                <tableViewController id="GXR-U2-90g" customClass="PlotViewController" customModule="MovieSearchProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Yq-I9-jqD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <sections>
+                            <tableViewSection id="vhh-bV-AOV">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="536" id="K7Z-Oo-9TT">
+                                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K7Z-Oo-9TT" id="n5I-BG-NlH">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="535.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LYA-UE-ufX">
+                                                    <rect key="frame" x="8" y="8" width="584" height="317"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="584" id="rG0-i7-FEg"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lFT-dg-TK7">
+                                                    <rect key="frame" x="282" y="249" width="37" height="37"/>
+                                                    <color key="color" red="0.84882181879999996" green="0.094382099809999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="LYA-UE-ufX" secondAttribute="bottom" constant="202.5" id="Dts-kf-dfr"/>
+                                                <constraint firstItem="lFT-dg-TK7" firstAttribute="centerX" secondItem="n5I-BG-NlH" secondAttribute="centerX" id="QU1-F5-buu"/>
+                                                <constraint firstItem="lFT-dg-TK7" firstAttribute="centerY" secondItem="n5I-BG-NlH" secondAttribute="centerY" id="fo6-Jy-eq7"/>
+                                                <constraint firstAttribute="topMargin" secondItem="LYA-UE-ufX" secondAttribute="top" id="vrX-W2-Zm1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="LYA-UE-ufX" secondAttribute="trailing" id="xiT-8I-aZI"/>
+                                                <constraint firstItem="LYA-UE-ufX" firstAttribute="leading" secondItem="n5I-BG-NlH" secondAttribute="leadingMargin" id="ym1-1y-eAN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="GXR-U2-90g" id="pXq-xL-lup"/>
+                            <outlet property="delegate" destination="GXR-U2-90g" id="K8k-PC-wsg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Plot Info" id="jCh-3Q-rbX"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="lFT-dg-TK7" id="Jk3-VE-ZLI"/>
+                        <outlet property="fullPlotText" destination="LYA-UE-ufX" id="HUw-da-cea"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zVz-Kj-9T1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3235" y="238"/>
         </scene>
     </scenes>
 </document>

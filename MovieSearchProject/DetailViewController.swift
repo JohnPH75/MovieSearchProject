@@ -52,7 +52,7 @@ class DetailViewController: UITableViewController {
         navBarColor.alpha = 1
         navBarColor.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(), NSFontAttributeName: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 20)!]
         
-        let backButton = UIBarButtonItem(title: "Back To Search", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(movieSearchTapped))
+        let backButton = UIBarButtonItem(title: "🔙", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(movieSearchTapped))
         navigationItem.leftBarButtonItem = backButton
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AppleSDGothicNeo-UltraLight", size: 15)!], forState: UIControlState.Normal)
         backButton.tintColor = UIColor.redColor()
@@ -124,6 +124,18 @@ class DetailViewController: UITableViewController {
         self.ratedLabel.hidden = false
         self.plotText.hidden = false
         self.imageView.hidden = false
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "nextView"
+        {
+            let destinationVC = segue.destinationViewController as! PlotViewController
+            
+            if let movie = self.movie
+            {
+                destinationVC.movie = movie
+            }
+        }
     }
     
 }
